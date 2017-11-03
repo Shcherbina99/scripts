@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>Hemming </title>
+		<meta charset = "utf-8"></meta>
+		<script> 	
+			function code()
+			{
+				var x = document.getElementById("inp_mes").value;
+				var arr = x.split('');
+				for(i = 0;i < 4;i++)
+				{
+					arr[i] = arr[i] * 1;
+					
+				}
+				x += ((arr[0] + arr[1] + arr[3]) % 2);
+				x += ((arr[1] + arr[2] + arr[3]) % 2);
+				x += ((arr[2] + arr[3] + arr[0]) % 2);
+
+				document.getElementById("coded_mes").value = x;
+			}
+			
+			function recode(){
+				var x = document.getElementById("coded_mes").value;
+				var arr = x.split('');
+				var red = '6524013';
+				for(i = 0;i < arr.length ;i++)
+				{
+					arr[i] = arr[i] * 1;
+					
+				}
+				var newinf = '';
+				newinf += ((arr[0] + arr[1] + arr[3] + arr[4]) % 2);
+				newinf += ((arr[1] + arr[2] + arr[3] + arr[5]) % 2);
+				newinf += ((arr[2] + arr[3] + arr[0] + arr[6]) % 2);
+				if (newinf != 0){
+				arr[red.charAt(parseInt( newinf, 2 )-1)] = (arr[red.charAt(parseInt( newinf, 2 )-1)] + 1) % 2;
+				x = arr.join("");
+				}
+				document.getElementById("recoded_mes").value = x;
+			}
+
+			function control(keyCode) {
+			return ((keyCode==48) || (keyCode==49) || ((keyCode==96) || (keyCode==97)))
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Hemming code</h1>
+		<input maxlength = '4' id = "inp_mes" type = "text" onkeypress = "return control(event.keyCode)"  />input message <br />
+		<input type = "button" value = "code" onClick = "code()" /> <br />
+		<input maxlength = '7' id = "coded_mes" type = "text" onkeypress = "return control(event.keyCode)" />coded message<br />
+		<input type = "button" value = "recode" onClick = "recode()" /> <br />
+		<input id = "recoded_mes" type = "text" disabled />recoded message<br />
+		<span id = "result"> </span>
+	</body>
+
+
+</html>
