@@ -1,0 +1,38 @@
+#!bin/bash
+if [ -z "$1" ]; then
+echo 'Try use "-h" or "--help" after command.'
+exit
+fi
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+echo "Using: ./Imagemagick.sh [parent directory] [width] [height] [new directory]."
+echo 'The script resize the jpg-files to the size you entered  from the parent directory and saves them in a new directory.'
+exit
+fi
+
+if ! [ -d "$1" ]; then
+echo 'Not fined Directory'
+exit
+fi
+
+dir="$4"
+while [ -d "$dir" ]
+do
+dir="$dir"_copy
+done
+mkdir "$dir"
+
+cd "$1"
+for f in *.jpg
+do
+cp "$f" "$dir"
+done
+
+cd "$dir"
+for f in *.jpg;
+do
+width=`identify "$f" | cut -d " " -f3 | cut -d "x" -f1`
+height=`identify "$f" | cut -d " " -f3 | cut -d "x" -f2`
+if [[ $width > $2 || $height > $3 ]]; then
+convert "$f" -resize 480x480 "$f"
+fi
+done
