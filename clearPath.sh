@@ -15,7 +15,7 @@ else
 	while [ $# != 0 ]; do
     	case "$1" in
         	-p|--Path)
-				      if ! [ -z "$2" ]; then
+		    if ! [ -z "$2" ]; then
             		Path="$2"
 	            else
 	            	echo "Not path"
