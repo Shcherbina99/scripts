@@ -36,7 +36,7 @@ IFS=":"
 for dir in $Path;
 do
 if [[ "$dir" =~ ^(\.{1,2}(\/|$)) ]]; then
-  echo "Use ./clearPath.sh -h or --help"
+  echo "Use $0 -h or --help"
   exit
 fi
 done
