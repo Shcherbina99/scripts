@@ -51,10 +51,10 @@ do
 		for file in *;
 		do
 			if [[ -x "$file" && -f "$file" ]]; then
-				if ! [ "$newPath" == "" ]; then
-					newPath="$newPath":"$dir"
+					if ! [ "$newPath" == "" ]; then
+						newPath="$newPath":"$dir"
 					else
-					newPath="$dir"
+						newPath="$dir"
 					fi
 				break
 			fi
